@@ -29,26 +29,26 @@ if (!empty($_POST)) {
 
     $update="UPDATE users SET user_name='$name', user_phone='$phone', user_email='$email', role_id='$role', WHERE user_id='$id'";
 
-  if (!empty($name)) {
-    if (!empty($phone)) {
-      if (!empty($email)) {
-        // if (!empty($username)) {
-        //   if (!empty($password)) {
-        //     if (!empty($repassword)) {
-        //       if ($password === $repassword) {
-                if (!empty($role)) {
+  // if (!empty($name)) {
+  //   if (!empty($phone)) {
+  //     if (!empty($email)) {
+  //       // if (!empty($username)) {
+  //       //   if (!empty($password)) {
+  //       //     if (!empty($repassword)) {
+  //       //       if ($password === $repassword) {
+  //               if (!empty($role)) {
 
 
                   if (mysqli_query($con, $insert_update)) {
-                    move_uploaded_file($image['tmp_name'], 'uploads/' . $imageName);
+                    move_uploaded_file($image['tmp_name'], 'uploads/' . $imageName); }
 
                     echo "User insert successfully";
-                  } else {
-                    echo "Something is worng";
-                  }
-                } else {
-                  echo "OPPS! Please Select Your Role.";
-                }
+                //   } else {
+                //     echo "Something is worng";
+                //   }
+                // } else {
+                //   echo "OPPS! Please Select Your Role.";
+                // }
       //         } else {
       //           echo "Password & Repassword Didn't Match.";
       //         }
@@ -62,14 +62,14 @@ if (!empty($_POST)) {
       //     echo "OPPS! Enter Your Username.";
       //   }
       // } else {
-        echo "OPPS! Enter Your Email.";
-      }
-    } else {
-      echo "OPPS! Enter Your Phone.";
-    }
-  } else {
-    echo "OPPS! Enter Your Name.";
-  }
+  //       echo "OPPS! Enter Your Email.";
+  //     }
+  //   } else {
+  //     echo "OPPS! Enter Your Phone.";
+  //   }
+  // } else {
+  //   echo "OPPS! Enter Your Name.";
+  // }
 }
 
 ?>
