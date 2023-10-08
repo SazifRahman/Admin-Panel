@@ -1,0 +1,20 @@
+OOP Overview
+1.class
+2.object
+3.property 
+4.method 
+5.encapsulation
+6.polymorphism 
+7.inheritance 
+8.superclass / parientclass
+9.subclass / childclass
+10.access modifier
+	*public
+	*private
+	*protected
+11.chaining method 
+12.static method 
+13.magic method14.
+15.
+
+

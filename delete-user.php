@@ -1,6 +1,8 @@
 <?php
 
 include_once('functions/function.php');
+needlogged();
+if($_SESSION['role']=='1'){
 
 $id=$_GET['d'];
 
@@ -10,5 +12,10 @@ if(mysqli_query($con,$del)){
 }else{
     echo "Failed.";
 }
+
+}else{
+    header('Location: index.php');
+    // echo "Access Denied! You don't have permission to visit this page.";
+  }
 
 ?>

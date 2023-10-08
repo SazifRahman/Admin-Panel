@@ -1,6 +1,8 @@
 <?php
 
 include_once('functions/function.php');
+needlogged();
+if($_SESSION['role']=='1'){
 get_header();
 get_sidebar();
 
@@ -19,36 +21,41 @@ if (!empty($_POST)) {
   // $repassword = md5(($_POST['repassword']));
   $role = $_POST['role'];
   $image = $_FILES['image'];
-  // $imageName = '';
+  $imageName = '';
   if ($image['name'] != '') {
+    if(mysqli_query($con,$update)) {
 
-    // $imageName = 'user_' . time() . '_' . rand(100000, 10000000) . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
+    $imageName = 'user_' . time() . '_' . rand(100000, 10000000) . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
   }
-    // $insert_query = "INSERT INTO `users`( `user_name`, `user_phone`, `user_email`, `user_username`, `user_password`, `role_id`, `user_photo`) 
+    $insert_query = "INSERT INTO `users`( `user_name`, `user_phone`, `user_email`, `user_username`, `user_password`, `role_id`, `user_photo`) 
     // VALUES ('$name','$phone','$email','$username','$password','$role','$imageName')";
 
     $update="UPDATE users SET user_name='$name', user_phone='$phone', user_email='$email', role_id='$role', WHERE user_id='$id'";
 
-  // if (!empty($name)) {
-  //   if (!empty($phone)) {
-  //     if (!empty($email)) {
-  //       // if (!empty($username)) {
-  //       //   if (!empty($password)) {
-  //       //     if (!empty($repassword)) {
-  //       //       if ($password === $repassword) {
-  //               if (!empty($role)) {
+    if(mysqli_query($con,$updimg)){
+      move_uploaded_file($image['tmp_name'], 'uploads/' . $imageName); }
+      header('location: view-user.php?v'.$id);
 
 
-                  if (mysqli_query($con, $insert_update)) {
-                    move_uploaded_file($image['tmp_name'], 'uploads/' . $imageName); }
+  if (!empty($name)) {
+    if (!empty($phone)) {
+      if (!empty($email)) {
+        // if (!empty($username)) {
+        //   if (!empty($password)) {
+        //     if (!empty($repassword)) {
+        //       if ($password === $repassword) {
+                if (!empty($role)) {
+
+
+                  }
 
                     echo "User insert successfully";
-                //   } else {
-                //     echo "Something is worng";
-                //   }
-                // } else {
-                //   echo "OPPS! Please Select Your Role.";
-                // }
+                  } else {
+                    echo "Something is worng";
+                  }
+                } else {
+                  echo "OPPS! Please Select Your Role.";
+                }
       //         } else {
       //           echo "Password & Repassword Didn't Match.";
       //         }
@@ -62,15 +69,14 @@ if (!empty($_POST)) {
       //     echo "OPPS! Enter Your Username.";
       //   }
       // } else {
-  //       echo "OPPS! Enter Your Email.";
-  //     }
-  //   } else {
-  //     echo "OPPS! Enter Your Phone.";
-  //   }
-  // } else {
-  //   echo "OPPS! Enter Your Name.";
-  // }
-}
+        echo "OPPS! Enter Your Email.";
+      }
+    } else {
+      echo "OPPS! Enter Your Phone.";
+    }
+  } else {
+    echo "OPPS! Enter Your Name.";
+  }
 
 ?>
 
@@ -131,7 +137,7 @@ if (!empty($_POST)) {
           <div class="row mb-3">
             <label class="col-sm-3 col-form-label col_form_label">User Role<span class="req_star">*</span>:</label>
             <div class="col-sm-4">
-              <select class="form-control form_control" id="" name="role">
+              <select class="form-control form_control" id="" name="role" value="<?=$data['role_id'];?>">
                 <option value="">Select Role</option>
 
                 <?php
@@ -171,4 +177,9 @@ if (!empty($_POST)) {
 
 <?php
 get_footer();
+
+}else{
+  header('Location: index.php');
+  // echo "Access Denied! You don't have permission to visit this page.";
+}
 ?>

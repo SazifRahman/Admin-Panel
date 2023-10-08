@@ -1,6 +1,8 @@
 <?php
 
     include_once('functions/function.php');
+    needlogged();
+    if($_SESSION['role']=='1'){
     get_header();
     get_sidebar();
 
@@ -90,5 +92,9 @@
 <?php
 
     get_footer();
+  }else{
+    header('Location: index.php');
+    // echo "Access Denied! You don't have permission to visit this page.";
+  }
 
 ?>
