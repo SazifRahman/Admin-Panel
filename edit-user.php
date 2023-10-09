@@ -51,7 +51,7 @@ if (!empty($_POST)) {
 
                     echo "User insert successfully";
                   } else {
-                    echo "Something is worng";
+                    echo "Something is wrong";
                   }
                 } else {
                   echo "OPPS! Please Select Your Role.";
