@@ -77,7 +77,7 @@
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <a href="#" class="float-end text-primary">Forgot Password?</a>
+                                            <a href="forgot-password.php" class="float-end text-primary">Forgot Password?</a>
                                         </div>
 
                                         <div class="col-12">
