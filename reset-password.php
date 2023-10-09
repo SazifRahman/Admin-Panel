@@ -25,7 +25,38 @@
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
                                 
-                               
+                                <?php
+                                    $slug=$_GET['rp'];
+                                    $sel="SELECT * FROM users NATURAL JOIN roles WHERE user_slug='$slug'";
+                                    $Q=mysqli_query($con, $sel);
+                                    $data=mysqli_fetch_assoc($Q);
+                                    $id=$data['user_id'];
+
+                                    if($_POST){
+                                    $pw=md5($_POST['password']);
+                                    $rpw=md5($_POST['repassword']);
+
+                                    $update="UPDATE users SET user_password='$pw' WHERE user_id='$id'";
+
+                                                if(!empty($pw)){
+                                                if(!empty($rpw)){
+                                                if($pw===$rpw){
+                                                if(mysqli_query($con,$update)){
+                                                header('Location: logout.php');
+                                                    }else{
+                                                    echo "OPPS! Pasword Generate failed.";
+                                                    }
+                                                    }else{
+                                                    echo "Password & Confirm Password didn't match.";
+                                                    }
+                                                    }else{
+                                                    echo "Enter Confirm Password.";
+                                                    }
+                                                    }else{
+                                                    echo "Enter Password.";
+                                                    }
+                                                }
+                                ?>
 
                                     <form action="" method="POST" class="row g-4">
                                         <div class="col-12">

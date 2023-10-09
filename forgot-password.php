@@ -36,7 +36,7 @@
                                     $data=mysqli_fetch_assoc($Q);
 
                                     if($data){
-                                        header('Location: reset-password.php?rp='.$data['user_id']);
+                                        header('Location: reset-password.php?rp='.$data['user_slug']);
                                     }else{
                                         echo "Enter your correct email address.";
                                     } }

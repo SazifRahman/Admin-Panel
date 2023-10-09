@@ -1,5 +1,6 @@
 <?php
 
+// echo uniqid();
 include_once('functions/function.php');
 needlogged();
 if($_SESSION['role']=='1'){
@@ -15,7 +16,7 @@ if (!empty($_POST)) {
   $password = md5(($_POST['password']));
   $repassword = md5(($_POST['repassword']));
   $role = $_POST['role'];
-
+  $slug=uniqid('U');
 
 
   $image = $_FILES['image'];
@@ -24,8 +25,8 @@ if (!empty($_POST)) {
 
     $imageName = 'user_' . time() . '_' . rand(100000, 10000000) . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
   }
-    $insert_query = "INSERT INTO `users`( `user_name`, `user_phone`, `user_email`, `user_username`, `user_password`, `role_id`, `user_photo`) 
-    VALUES ('$name','$phone','$email','$username','$password','$role','$imageName')";
+    $insert_query = "INSERT INTO `users`( `user_name`, `user_phone`, `user_email`, `user_username`, `user_password`, `role_id`, `user_photo`, `user_slug`) 
+    VALUES ('$name','$phone','$email','$username','$password','$role','$imageName','$slug')";
 
   if (!empty($name)) {
     if (!empty($phone)) {
